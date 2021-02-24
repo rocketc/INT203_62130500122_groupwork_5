@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic Vue Js - HelloWorld App</title>
+
+  <!-- https://google.github.io/material-design-icons/#icon-font-for-the-web -->
+  <!-- Using via Google Web Fonts -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+  <!-- https://tailwindcss.com/docs/installation -->
+  <!-- Using Tailwind via CDN -->
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+
+  <!-- https://v3.vuejs.org/guide/installation.html#release-notes -->
+  <!-- Vue CDN -->
+  <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+
+<body>
+  <div id="app" class="font-light max-w-xl mx-auto my-10 mt-4 mb-0 space-y-3 text-2xl">
+    <h1 class="pl-40 text-3xl"> Rabbit Photo Gallery 
+       <span class="mx-2 text-3xl">({{rabbits.length}})</span>
+       <!-- {{rabbits.filter( t=> !t.done).length}}) -->
+    </h1>
+
+    <hr class="mt-2 mb-5">
+    
+    <h1>My favorite<span class="mx-2 text-3xl">({{countDone}})</span></h1>
+
+    <div  class="max-w-xl ml-24 mr-28 my-10 pt-2 space-y-3 text-center">
+      <photo-item @toggle-done="toggleDone" :rabbits = "rabbits"></photo-item>
+      <!-- <ul>
+      <li v-for="(rabbit, index) in rabbits " class="pb-10 {done: rabbit.done}"></li> 
+        <div v-for="(rabbit,index) in filterList">
+          <a v-on:click="expandImage = true,returnIndex(index)" href="#">
+            <img :src="rabbit.img" width="550" class="rounded-lg h-64" />
+          </a>
+          <p class="text-lg font-semibold">{{rabbit.title}}</p>
+          <button v-on:click="toggleDone(index)" class=" py-1 px-2 rounded">
+            <span v-show="rabbit.done" class="material-icons fill-current text-red-500">
+							favorite
+						</span>
+						<span v-if="rabbit.done==false"class="material-icons" > favorite </span>
+          </button>
+          
+        </div>
+      </ul> -->
+
+      <div v-if="expandImage" class="bg-black ml-auto mr-auto h-full w-full">
+        <img
+          v-bind:src="copyGallery[indexGallery].img"
+          class="h-auto w-auto mr-auto ml-auto"
+        />
+        <span
+          @click="expandImage=false"
+          class="bg-yellow-300 mr-0 h-50 w-auto"
+          >x close</span
+        >
+      </div>
+    </div>
+
+<!--     
+    <div id="gallery" class="max-w-xl ml-24 mr-28 my-10 space-y-3 text-center">
+      <ul >
+        <li v-for="(rabbit, index) in rabbits " class="pb-10 {done: rabbit.done}">
+          <img v-bind:src="rabbit.img" width="550" class="rounded-lg h-64">
+          <button v-on:click="toggleDone(index)" class=" py-1 px-2 rounded">
+            <span v-show="rabbit.done" class="material-icons fill-current text-red-500">
+							favorite
+						</span>
+						<span v-if="rabbit.done==false"class="material-icons" > favorite </span>
+          </button>
+          {{rabbit.title}}
+          
+        </li>
+      </ul>
+      <h1>My favorite<span class="mx-2 text-3xl">({{countDone}})</span></h1>
+    </div> -->
+  </div>
+
+  <!-- my main.js -->
+  <script src="./main.js"></script>
+  <script src="./components/PhotoItem.js"></script>
+
+  <script>
+    const mounted = app.mount('#app')
+  </script>
+</body>
+
+</html>
